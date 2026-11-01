@@ -1,6 +1,6 @@
 # English and Vietnamese HowToLiveBetter
 
-Status: implementation and local validation complete; GitHub Pages deployment pending.
+Status: complete; GitHub Pages deployment verified.
 
 ## Outcome
 Create a Nuxt website and GitHub repository based on eternity4719/HowToLiveBetter, with complete English and Vietnamese translations of the website's book content.
@@ -14,7 +14,7 @@ Preserve source evidence ratings, monetary units, jurisdiction, references, entr
 3. Translate content into English and Vietnamese; validate completeness and links. The public Google endpoint returned HTTP 429, so resumable batches ran through authenticated Antigravity CLI, with Codex CLI as a fallback.
 4. Implement responsive Nuxt reader with language switching, chapter navigation, search and source-equivalent filters.
 5. Validate content, behavior, static generation and desktop/mobile rendering; review.
-6. Create GitHub repository, configure Pages and verify deployment. Repository created: https://github.com/hoanghadu/how-to-live-better. Pages configured for GitHub Actions; release pending.
+6. Create GitHub repository, configure Pages and verify deployment. Repository: https://github.com/hoanghadu/how-to-live-better. Live site: https://hoanghadu.github.io/how-to-live-better/.
 
 ## Acceptance
 - Both languages contain the complete imported book, not excerpts or placeholder text.
@@ -30,4 +30,5 @@ Preserve source evidence ratings, monetary units, jurisdiction, references, entr
 - `npm run content:validate`, six source-data/filter tests and static Nuxt generation pass.
 - Desktop 1280px and mobile 390px translated reader inspected; language switch preserves chapter 10, search works, mobile filters open, no horizontal overflow or JavaScript errors recorded.
 - WCAG A/AA browser audit reported zero violations after contrast correction.
+- GitHub checks and Pages deployment succeeded for commit `bcf6f65`; both public language routes returned HTTP 200 and rendered translated entries without browser errors.
 - Independent simplification/review completed; reused Markdown renderer and clearer catalog iteration.
