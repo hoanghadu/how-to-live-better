@@ -8,3 +8,5 @@ dist
 *.log
 docs/translation-cache/
 docs/translation-errors-*.json
+__pycache__/
+/plans/reports/orchestrate-261101-1408-translation/

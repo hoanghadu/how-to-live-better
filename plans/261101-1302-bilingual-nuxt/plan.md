@@ -1,6 +1,6 @@
 # English and Vietnamese HowToLiveBetter
 
-Status: partial implementation; content translation and publication blocked by provider HTTP 429.
+Status: implementation and local validation complete; GitHub Pages deployment pending.
 
 ## Outcome
 Create a Nuxt website and GitHub repository based on eternity4719/HowToLiveBetter, with complete English and Vietnamese translations of the website's book content.
@@ -11,10 +11,10 @@ Preserve source evidence ratings, monetary units, jurisdiction, references, entr
 ## Phases
 1. Inspect upstream source/license and record a pinned revision.
 2. Import all 34 chapters and 767 entries, retaining metadata and source links.
-3. Translate content into English and Vietnamese; validate completeness, numeric values and links. Google machine translation attempted; batch service returns HTTP 429. A provisioned provider or human translation is required.
+3. Translate content into English and Vietnamese; validate completeness and links. The public Google endpoint returned HTTP 429, so resumable batches ran through authenticated Antigravity CLI, with Codex CLI as a fallback.
 4. Implement responsive Nuxt reader with language switching, chapter navigation, search and source-equivalent filters.
 5. Validate content, behavior, static generation and desktop/mobile rendering; review.
-6. Create GitHub repository, configure Pages and verify deployment. Repository created: https://github.com/hoanghadu/how-to-live-better. No Pages release yet.
+6. Create GitHub repository, configure Pages and verify deployment. Repository created: https://github.com/hoanghadu/how-to-live-better. Pages configured for GitHub Actions; release pending.
 
 ## Acceptance
 - Both languages contain the complete imported book, not excerpts or placeholder text.
@@ -26,8 +26,8 @@ Preserve source evidence ratings, monetary units, jurisdiction, references, entr
 ## Verified progress
 - Imported all 34 chapters and 767 entries with pinned provenance and licenses.
 - Implemented EN/VI interface, full reader and filters, pagination, source links and explicit missing-translation state.
-- Six source-data/filter tests pass. Nuxt production compilation passes.
-- Desktop 1280px and mobile 390px pending-state UI inspected; language switch works, no horizontal overflow or JavaScript errors recorded.
-- Complete translated reader UI remains unverified because locale files are absent.
-- Content validation fails explicitly on missing English translation; deployment workflow preserves this gate.
+- Both locale files contain 154/154 accepted batches, 4,538 translated segments, all 34 chapters and 767 entries. CLI provenance is in the translation run report; both datasets are marked unreviewed.
+- `npm run content:validate`, six source-data/filter tests and static Nuxt generation pass.
+- Desktop 1280px and mobile 390px translated reader inspected; language switch preserves chapter 10, search works, mobile filters open, no horizontal overflow or JavaScript errors recorded.
+- WCAG A/AA browser audit reported zero violations after contrast correction.
 - Independent simplification/review completed; reused Markdown renderer and clearer catalog iteration.

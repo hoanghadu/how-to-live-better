@@ -4,6 +4,7 @@ const root = new URL('../public/content/', import.meta.url);
 const read = locale => JSON.parse(readFileSync(new URL(`${locale}.json`, root), 'utf8'));
 const source = read('zh-CN');
 const urls = text => text.match(/https?:\/\/[^\s<>\)]+/g) || [];
+const markdownDestinations = text => [...text.matchAll(/\]\(([^)]*)\)/g)].map(match => match[1]);
 const fields = ['title','cost','summary','benefit','sources','notes','gradeNote'];
 for (const locale of ['en','vi']) {
   assert.ok(existsSync(new URL(`${locale}.json`, root)), `Missing complete ${locale} translation. Publication is blocked.`);
@@ -16,6 +17,7 @@ for (const locale of ['en','vi']) {
     assert.equal(typeof after[key], 'string', `Missing ${key}`);
     assert.ok(!before[key] || after[key].trim(), `Empty ${key}`);
     assert.deepEqual(urls(after[key]), urls(before[key]), `Changed URLs in ${locale}/${before.id}/${key}`);
+    assert.deepEqual(markdownDestinations(after[key]), markdownDestinations(before[key]), `Changed Markdown links in ${locale}/${before.id}/${key}`);
     if (/[\u3400-\u9fff]/u.test(before[key])) assert.notEqual(after[key], before[key], `Untranslated ${locale}/${before.id}/${key}`);
     assert.doesNotMatch(after[key], /ZXQLINK\d+QXZ/i, 'Unresolved translation marker');
   };
@@ -31,5 +33,5 @@ for (const locale of ['en','vi']) {
       for (const key of fields) check(before, entry, key);
     }
   }
-  console.log(`${locale}: all chapters, fields, IDs, source URLs and metadata verified. Editorial accuracy still requires human review.`);
+  console.log(`${locale}: all chapters, fields, IDs, source links and metadata verified. Editorial accuracy still requires human review.`);
 }
